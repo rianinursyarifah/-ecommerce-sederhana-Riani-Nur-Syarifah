@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NusantaraStore — Toko Online Terpercaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #faf6f1;
+      --warm:     #f2ebe0;
+      --brown:    #6b4226;
+      --amber:    #c8803c;
+      --amber-lt: #e8a85a;
+      --dark:     #1c1008;
+      --mid:      #4a3525;
+      --text:     #2e1f0f;
+      --muted:    #9e7e65;
+      --white:    #ffffff;
+      --shadow:   0 8px 32px rgba(107,66,38,.12);
+      --shadow-lg:0 20px 60px rgba(107,66,38,.18);
+      --radius:   16px;
+      --radius-sm:10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--warm); }
+    ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 3px; }
+
+    /* ─── HEADER / NAV ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,246,241,.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,128,60,.15);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      animation: slideDown .6s ease both;
+    }
+
+    @keyframes slideDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--amber), var(--brown));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(200,128,60,.4);
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: -.3px;
+    }
+
+    .logo-text span { color: var(--amber); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: .9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all .25s ease;
+      position: relative;
+    }
+
+    nav ul li a:hover {
+      color: var(--amber);
+      background: rgba(200,128,60,.08);
+    }
+
+    nav ul li a.active {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .25s ease;
+      position: relative;
+    }
+
+    .cart-btn:hover {
+      background: var(--brown);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(200,128,60,.4);
+    }
+
+    .cart-badge {
+      background: var(--white);
+      color: var(--amber);
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      padding-top: 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      padding-left: 8vw;
+      padding-right: 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(200,128,60,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #home::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(107,66,38,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      z-index: 1;
+      animation: fadeUp .8s .1s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,128,60,.12);
+      color: var(--amber);
+      border: 1px solid rgba(200,128,60,.3);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: .8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: .5px;
+    }
+
+    .hero-badge::before {
+      content: '✦';
+      font-size: .7rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--amber);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 460px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--amber), #b36a25);
+      color: var(--white);
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s ease;
+      box-shadow: 0 6px 24px rgba(200,128,60,.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200,128,60,.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--brown);
+      text-decoration: none;
+      border: 2px solid rgba(107,66,38,.25);
+      border-radius: 12px;
+      padding: 13px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      background: rgba(200,128,60,.06);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 44px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(107,66,38,.1);
+    }
+
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brown);
+    }
+    .stat-label {
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Hero Image */
+    .hero-visual {
+      z-index: 1;
+      animation: fadeUp .8s .3s ease both;
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/4.5;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .hero-img-wrap:hover img { transform: scale(1.04); }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    .hero-float-card.card-1 {
+      bottom: 24px; left: -30px;
+    }
+
+    .hero-float-card.card-2 {
+      top: 32px; right: -30px;
+      animation-delay: 1.5s;
+    }
+
+    .fc-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(200,128,60,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .fc-label { font-size: .7rem; color: var(--muted); font-weight: 500; }
+    .fc-value { font-size: .9rem; color: var(--dark); font-weight: 700; }
+
+    /* ─── SECTION SHARED ─── */
+    section {
+      padding: 90px 8vw;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--amber);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      max-width: 500px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-desc {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 300px;
+      text-align: right;
+    }
+
+    /* ─── KATEGORI ─── */
+    #kategori {
+      background: var(--warm);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all .3s ease;
+      border: 1px solid rgba(200,128,60,.08);
+      cursor: pointer;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: rgba(200,128,60,.25);
+    }
+
+    .cat-icon {
+      width: 60px; height: 60px;
+      border-radius: 16px;
+      background: rgba(200,128,60,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 16px;
+      transition: all .3s ease;
+    }
+
+    .cat-card:hover .cat-icon {
+      background: rgba(200,128,60,.2);
+      transform: scale(1.1);
+    }
+
+    .cat-name {
+      font-weight: 600;
+      color: var(--dark);
+      font-size: .95rem;
+      margin-bottom: 4px;
+    }
+
+    .cat-count {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    /* ─── PRODUK UNGGULAN ─── */
+    #produk {
+      background: var(--cream);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(200,128,60,.08);
+      transition: all .35s ease;
+      animation: fadeUp .6s ease both;
+    }
+
+    .product-card:nth-child(1) { animation-delay:.1s; }
+    .product-card:nth-child(2) { animation-delay:.2s; }
+    .product-card:nth-child(3) { animation-delay:.3s; }
+    .product-card:nth-child(4) { animation-delay:.4s; }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(200,128,60,.2);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--warm);
+    }
+
+    .product-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .product-card:hover .product-img-wrap img { transform: scale(1.08); }
+
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--amber);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: .5px;
+    }
+
+    .product-badge.badge-new { background: #2a9d5c; }
+    .product-badge.badge-hot { background: #e25c3b; }
+
+    .product-wishlist {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 34px; height: 34px;
+      background: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      opacity: 0;
+      transition: all .3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    .product-card:hover .product-wishlist { opacity: 1; }
+    .product-wishlist:hover { transform: scale(1.1); }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-category {
+      font-size: .72rem;
+      color: var(--amber);
+      font-weight: 600;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .stars { color: #f5a623; font-size: .8rem; }
+    .rating-count { font-size: .75rem; color: var(--muted); }
+
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brown);
+    }
+
+    .product-price-old {
+      font-size: .8rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      display: block;
+    }
+
+    .discount-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      color: #e25c3b;
+      background: rgba(226,92,59,.1);
+      padding: 3px 7px;
+      border-radius: 6px;
+    }
+
+    .btn-cart {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--cream);
+      color: var(--brown);
+      border: 2px solid rgba(107,66,38,.2);
+      border-radius: 10px;
+      padding: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .25s ease;
+    }
+
+    .btn-cart:hover {
+      background: var(--amber);
+      color: var(--white);
+      border-color: var(--amber);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(200,128,60,.3);
+    }
+
+    /* ─── PROMO BANNER ─── */
+    #promo {
+      background: linear-gradient(135deg, var(--brown) 0%, #4a1a0a 100%);
+      padding: 70px 8vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #promo::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,128,60,.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #promo::after {
+      content: '✦';
+      position: absolute;
+      font-size: 20rem;
+      color: rgba(255,255,255,.025);
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: serif;
+    }
+
+    .promo-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 12px;
+    }
+
+    .promo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      max-width: 450px;
+    }
+
+    .promo-title span { color: var(--amber-lt); }
+
+    .promo-desc {
+      color: rgba(255,255,255,.65);
+      font-size: .95rem;
+      line-height: 1.6;
+      margin-top: 16px;
+      max-width: 400px;
+    }
+
+    .promo-code-box {
+      background: rgba(255,255,255,.1);
+      border: 1px dashed rgba(255,255,255,.3);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      min-width: 220px;
+      flex-shrink: 0;
+    }
+
+    .promo-code-label {
+      font-size: .75rem;
+      color: rgba(255,255,255,.6);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .promo-code {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--amber-lt);
+      letter-spacing: 4px;
+    }
+
+    .promo-btn {
+      margin-top: 16px;
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all .25s ease;
+    }
+
+    .promo-btn:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    /* ─── TESTIMONI ─── */
+    #testimoni {
+      background: var(--warm);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testi-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid rgba(200,128,60,.08);
+      transition: all .3s ease;
+    }
+
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .testi-stars { color: #f5a623; font-size: 1rem; margin-bottom: 14px; }
+
+    .testi-text {
+      font-size: .9rem;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testi-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(200,128,60,.2);
+    }
+
+    .testi-name {
+      font-weight: 600;
+      font-size: .9rem;
+      color: var(--dark);
+    }
+
+    .testi-location {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.75);
+      padding: 70px 8vw 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-brand .logo-text { color: rgba(255,255,255,.9); }
+    .footer-brand .logo-text span { color: var(--amber); }
+
+    .footer-tagline {
+      font-size: .875rem;
+      line-height: 1.7;
+      margin: 16px 0 24px;
+      color: rgba(255,255,255,.5);
+      max-width: 260px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-link {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.08);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      color: rgba(255,255,255,.7);
+      transition: all .25s ease;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .social-link:hover {
+      background: var(--amber);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      text-decoration: none;
+      color: rgba(255,255,255,.5);
+      font-size: .875rem;
+      transition: color .2s ease;
+    }
+    .footer-col ul li a:hover { color: var(--amber-lt); }
+
+    .contact-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .contact-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .contact-text {
+      font-size: .875rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.5;
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .copyright {
+      font-size: .8rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    .copyright strong { color: rgba(255,255,255,.6); }
+
+    .footer-badge {
+      display: flex;
+      gap: 8px;
+    }
+
+    .payment-badge {
+      background: rgba(255,255,255,.08);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .5px;
+    }
+
+    /* ─── TOAST NOTIF ─── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--dark);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: .875rem;
+      font-weight: 500;
+      box-shadow: 0 12px 40px rgba(0,0,0,.3);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .4s cubic-bezier(.34,1.56,.64,1);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--amber);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ─── CART MODAL ─── */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+
+    .cart-overlay.active { opacity: 1; pointer-events: all; }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(400px, 100vw);
+      height: 100vh;
+      background: var(--white);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -20px 0 60px rgba(0,0,0,.2);
+    }
+
+    .cart-drawer.active { transform: translateX(0); }
+
+    .cart-head {
+      padding: 24px;
+      border-bottom: 1px solid var(--warm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-head h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .cart-close {
+      width: 36px; height: 36px;
+      background: var(--warm);
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s ease;
+    }
+    .cart-close:hover { background: rgba(200,128,60,.15); color: var(--amber); }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .cart-empty-icon { font-size: 3rem; }
+    .cart-empty p { font-size: .9rem; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--warm);
+    }
+
+    .cart-item-img {
+      width: 64px; height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--warm);
+      flex-shrink: 0;
+    }
+
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 600; font-size: .875rem; color: var(--dark); margin-bottom: 4px; }
+    .cart-item-price { font-size: .875rem; color: var(--amber); font-weight: 600; margin-bottom: 10px; }
+
+    .cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 26px; height: 26px;
+      border: 1px solid rgba(200,128,60,.3);
+      background: transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s ease;
+      color: var(--brown);
+    }
+
+    .qty-btn:hover { background: var(--amber); color: var(--white); border-color: var(--amber); }
+    .qty-num { font-size: .875rem; font-weight: 600; min-width: 20px; text-align: center; }
+
+    .cart-item-del {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 1rem;
+      padding: 4px;
+      transition: color .2s ease;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .cart-item-del:hover { color: #e25c3b; }
+
+    .cart-foot {
+      padding: 20px 24px;
+      border-top: 1px solid var(--warm);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .cart-total-label { font-size: .875rem; color: var(--muted); }
+    .cart-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: linear-gradient(135deg, var(--amber), #b36a25);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .25s ease;
+    }
+    .btn-checkout:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,128,60,.4); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .products-grid, .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      #home {
+        grid-template-columns: 1fr;
+        padding-top: 90px;
+        padding-bottom: 60px;
+      }
+      .hero-visual { display: none; }
+      .hero-stats { gap: 20px; }
+      nav { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .promo-inner { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header id="top">
+    <a href="#home" class="logo" aria-label="NusantaraStore Home">
+      <div class="logo-icon">🛍️</div>
+      <span class="logo-text">Nusantara<span>Store</span></span>
+    </a>
+
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#kategori">Kategori</a></li>
+        <li><a href="#promo">Promo</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-btn" id="cartToggle" aria-label="Lihat keranjang belanja">
+        🛒 Keranjang
+        <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main>
+
+    <!-- ── HERO SECTION ── -->
+    <section id="home" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <div class="hero-badge">Toko Online Terpercaya</div>
+        <h1 class="hero-title" id="hero-title">
+          Selamat Datang di<br>
+          <em>Toko Online</em>
+          Kami
+        </h1>
+        <p class="hero-desc">
+          Temukan ribuan produk pilihan berkualitas tinggi dengan harga terbaik.
+          Belanja mudah, cepat, dan aman langsung dari rumah Anda.
+        </p>
+        <div class="hero-actions">
+          <a href="#produk" class="btn-primary">
+            🛍️ Mulai Belanja
+          </a>
+          <a href="#kategori" class="btn-secondary">
+            Lihat Kategori →
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">10rb+</div>
+            <div class="stat-label">Produk Tersedia</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50rb+</div>
+            <div class="stat-label">Pelanggan Puas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4.9★</div>
+            <div class="stat-label">Rating Toko</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&auto=format&fit=crop"
+            alt="Berbagai produk unggulan NusantaraStore"
+          />
+        </div>
+        <div class="hero-float-card card-1">
+          <div class="fc-icon">📦</div>
+          <div>
+            <div class="fc-label">Pengiriman</div>
+            <div class="fc-value">Gratis Ongkir</div>
+          </div>
+        </div>
+        <div class="hero-float-card card-2">
+          <div class="fc-icon">🔒</div>
+          <div>
+            <div class="fc-label">Transaksi</div>
+            <div class="fc-value">100% Aman</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── KATEGORI ── -->
+    <section id="kategori" aria-labelledby="kategori-title">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Jelajahi</div>
+          <h2 class="section-title" id="kategori-title">Kategori Populer</h2>
+        </div>
+        <p class="section-desc">Temukan produk sesuai kebutuhan dari berbagai kategori pilihan.</p>
+      </div>
+
+      <div class="categories-grid">
+        <a href="#produk" class="cat-card" aria-label="Kategori Elektronik">
+          <div class="cat-icon">📱</div>
+          <div class="cat-name">Elektronik</div>
+          <div class="cat-count">1.200+ Produk</div>
+        </a>
+        <a href="#produk" class="cat-card" aria-label="Kategori Fashion">
+          <div class="cat-icon">👗</div>
+          <div class="cat-name">Fashion</div>
+          <div class="cat-count">3.400+ Produk</div>
+        </a>
+        <a href="#produk" class="cat-card" aria-label="Kategori Rumah & Dapur">
+          <div class="cat-icon">🏠</div>
+          <div class="cat-name">Rumah & Dapur</div>
+          <div class="cat-count">2.100+ Produk</div>
+        </a>
+        <a href="#produk" class="cat-card" aria-label="Kategori Kecantikan">
+          <div class="cat-icon">💄</div>
+          <div class="cat-name">Kecantikan</div>
+          <div class="cat-count">890+ Produk</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── PRODUK UNGGULAN ── -->
+    <section id="produk" aria-labelledby="produk-title">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Pilihan Terbaik</div>
+          <h2 class="section-title" id="produk-title">Produk Unggulan</h2>
+        </div>
+        <p class="section-desc">Produk terlaris dengan kualitas terjamin dan harga terbaik.</p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Produk 1 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop"
+              alt="Jam Tangan Premium Stainless Steel"
+            />
+            <span class="product-badge badge-hot">🔥 HOT</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Aksesori</p>
+            <h3 class="product-name">Jam Tangan Premium Stainless Steel</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(128 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 899.000</span>
+                <span class="product-price">Rp 599.000</span>
+              </div>
+              <span class="discount-tag">-33%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Jam Tangan Premium', 599000)"
+              aria-label="Tambah Jam Tangan Premium ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 2 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=500&auto=format&fit=crop"
+              alt="Set Skincare Perawatan Wajah Alami"
+            />
+            <span class="product-badge badge-new">✨ BARU</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Kecantikan</p>
+            <h3 class="product-name">Set Skincare Perawatan Wajah Alami</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(245 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 450.000</span>
+                <span class="product-price">Rp 320.000</span>
+              </div>
+              <span class="discount-tag">-29%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Set Skincare Wajah', 320000)"
+              aria-label="Tambah Set Skincare ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 3 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop"
+              alt="Sepatu Olahraga Running Premium"
+            />
+            <span class="product-badge">⭐ TERLARIS</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Fashion</p>
+            <h3 class="product-name">Sepatu Olahraga Running Premium</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(312 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 750.000</span>
+                <span class="product-price">Rp 549.000</span>
+              </div>
+              <span class="discount-tag">-27%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Sepatu Running Premium', 549000)"
+              aria-label="Tambah Sepatu Running ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 4 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&auto=format&fit=crop"
+              alt="Headphone Wireless Noise Cancelling"
+            />
+            <span class="product-badge badge-new">✨ BARU</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Elektronik</p>
+            <h3 class="product-name">Headphone Wireless Noise Cancelling</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(189 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 1.200.000</span>
+                <span class="product-price">Rp 899.000</span>
+              </div>
+              <span class="discount-tag">-25%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Headphone Wireless', 899000)"
+              aria-label="Tambah Headphone Wireless ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 5 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=500&auto=format&fit=crop"
+              alt="Buku Pengembangan Diri Best Seller"
+            />
+            <span class="product-badge">📚 BEST SELLER</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Buku</p>
+            <h3 class="product-name">Buku Pengembangan Diri Best Seller</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(567 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 120.000</span>
+                <span class="product-price">Rp 89.000</span>
+              </div>
+              <span class="discount-tag">-26%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Buku Pengembangan Diri', 89000)"
+              aria-label="Tambah Buku ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 6 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&auto=format&fit=crop"
+              alt="Kursi Ergonomis untuk WFH"
+            />
+            <span class="product-badge badge-hot">🔥 HOT</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Rumah & Dapur</p>
+            <h3 class="product-name">Kursi Ergonomis untuk WFH</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="rating-count">(93 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 2.500.000</span>
+                <span class="product-price">Rp 1.899.000</span>
+              </div>
+              <span class="discount-tag">-24%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Kursi Ergonomis WFH', 1899000)"
+              aria-label="Tambah Kursi Ergonomis ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 7 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1614632537190-23e4146777db?w=500&auto=format&fit=crop"
+              alt="Tas Ransel Anti-Air Laptop 15 inch"
+            />
+            <span class="product-badge badge-new">✨ BARU</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Fashion</p>
+            <h3 class="product-name">Tas Ransel Anti-Air Laptop 15"</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(441 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 480.000</span>
+                <span class="product-price">Rp 349.000</span>
+              </div>
+              <span class="discount-tag">-27%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Tas Ransel Anti-Air', 349000)"
+              aria-label="Tambah Tas Ransel ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+        <!-- Produk 8 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&auto=format&fit=crop"
+              alt="Blender Portable Mini Smoothie"
+            />
+            <span class="product-badge">⭐ TERLARIS</span>
+            <button class="product-wishlist" aria-label="Tambah ke wishlist">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Rumah & Dapur</p>
+            <h3 class="product-name">Blender Portable Mini Smoothie</h3>
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="rating-count">(723 ulasan)</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price-old">Rp 280.000</span>
+                <span class="product-price">Rp 199.000</span>
+              </div>
+              <span class="discount-tag">-29%</span>
+            </div>
+            <button
+              class="btn-cart"
+              onclick="addToCart(this, 'Blender Portable Mini', 199000)"
+              aria-label="Tambah Blender Portable ke keranjang"
+            >
+              🛒 Tambah ke Keranjang
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ── PROMO BANNER ── -->
+    <section id="promo" aria-labelledby="promo-title">
+      <div class="promo-inner">
+        <div>
+          <p class="promo-label">✦ Penawaran Spesial</p>
+          <h2 class="promo-title" id="promo-title">
+            Diskon Hingga<br>
+            <span>50% Off</span><br>
+            Hari Ini!
+          </h2>
+          <p class="promo-desc">
+            Gunakan kode promo eksklusif dan hemat lebih banyak untuk setiap pembelian produk pilihan.
+          </p>
+        </div>
+        <div class="promo-code-box" aria-label="Kode promo spesial">
+          <p class="promo-code-label">KODE PROMO</p>
+          <p class="promo-code">NUSA50</p>
+          <button class="promo-btn" onclick="copyPromo()">📋 Salin Kode</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TESTIMONI ── -->
+    <section id="testimoni" aria-labelledby="testi-title">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Ulasan</div>
+          <h2 class="section-title" id="testi-title">Apa Kata Pelanggan</h2>
+        </div>
+        <p class="section-desc">Kepuasan pelanggan adalah prioritas utama kami.</p>
+      </div>
+
+      <div class="testi-grid">
+        <article class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Produknya luar biasa! Kualitas sangat baik dan pengiriman cepat. Saya sudah belanja berkali-kali dan selalu puas. Highly recommended!"</p>
+          <div class="testi-author">
+            <img
+              src="https://i.pravatar.cc/100?img=1"
+              alt="Foto profil Siti Rahayu"
+              class="testi-avatar"
+            />
+            <div>
+              <p class="testi-name">Siti Rahayu</p>
+              <p class="testi-location">Jakarta, DKI Jakarta</p>
+            </div>
+          </div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Belanja di sini sangat nyaman dan aman. Produk sesuai foto, harga bersaing, dan customer service sangat responsif. Akan terus berlangganan!"</p>
+          <div class="testi-author">
+            <img
+              src="https://i.pravatar.cc/100?img=12"
+              alt="Foto profil Budi Santoso"
+              class="testi-avatar"
+            />
+            <div>
+              <p class="testi-name">Budi Santoso</p>
+              <p class="testi-location">Surabaya, Jawa Timur</p>
+            </div>
+          </div>
+        </article>
+        <article class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Toko online terpercaya! Paket dikemas dengan rapi dan aman. Produknya original dan berkualitas. Pasti beli lagi bulan depan!"</p>
+          <div class="testi-author">
+            <img
+              src="https://i.pravatar.cc/100?img=5"
+              alt="Foto profil Dewi Anjani"
+              class="testi-avatar"
+            />
+            <div>
+              <p class="testi-name">Dewi Anjani</p>
+              <p class="testi-location">Bandung, Jawa Barat</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🛍️</div>
+          <span class="logo-text">Nusantara<span>Store</span></span>
+        </div>
+        <p class="footer-tagline">
+          Toko online terpercaya dengan ribuan produk berkualitas. Belanja mudah, aman, dan hemat setiap hari.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram NusantaraStore">📷</a>
+          <a href="#" class="social-link" aria-label="Facebook NusantaraStore">👤</a>
+          <a href="#" class="social-link" aria-label="Twitter NusantaraStore">🐦</a>
+          <a href="#" class="social-link" aria-label="YouTube NusantaraStore">▶️</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Toko</h4>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#produk">Semua Produk</a></li>
+          <li><a href="#kategori">Kategori</a></li>
+          <li><a href="#promo">Promo & Diskon</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Bantuan</h4>
+        <ul>
+          <li><a href="#">Cara Pemesanan</a></li>
+          <li><a href="#">Pengiriman</a></li>
+          <li><a href="#">Pengembalian Barang</a></li>
+          <li><a href="#">Kebijakan Privasi</a></li>
+          <li><a href="#">Syarat & Ketentuan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontak Kami</h4>
+        <address style="font-style:normal;">
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <p class="contact-text">Jl. Sudirman No. 45, Jakarta Pusat, DKI Jakarta 10220</p>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <p class="contact-text">
+              <a href="tel:+62217654321" style="color:inherit; text-decoration:none;">(021) 765-4321</a>
+            </p>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <p class="contact-text">
+              <a href="mailto:halo@nusantarastore.id" style="color:inherit; text-decoration:none;">halo@nusantarastore.id</a>
+            </p>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <p class="contact-text">Senin – Sabtu: 08.00 – 21.00 WIB</p>
+          </div>
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © 2025 <strong>NusantaraStore</strong>. Semua hak dilindungi undang-undang.
+      </p>
+      <div class="footer-badge" aria-label="Metode pembayaran yang diterima">
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MASTERCARD</span>
+        <span class="payment-badge">OVO</span>
+        <span class="payment-badge">GOPAY</span>
+        <span class="payment-badge">DANA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════ CART DRAWER ══════════════ -->
+  <div class="cart-overlay" id="cartOverlay" role="dialog" aria-modal="true" aria-label="Keranjang belanja"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Keranjang belanja">
+    <div class="cart-head">
+      <h3>🛒 Keranjang Belanja</h3>
+      <button class="cart-close" id="cartClose" aria-label="Tutup keranjang">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛍️</div>
+        <p>Keranjang Anda masih kosong.</p>
+        <p>Yuk, mulai belanja sekarang!</p>
+      </div>
+    </div>
+    <div class="cart-foot" id="cartFoot" style="display:none;">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total Harga</span>
+        <span class="cart-total-price" id="cartTotal">Rp 0</span>
+      </div>
+      <button class="btn-checkout" onclick="checkout()">Lanjut ke Pembayaran →</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════ TOAST ══════════════ -->
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ══════════════ JAVASCRIPT ══════════════ -->
+  <script>
+    // ── Cart State ──
+    let cart = [];
+
+    // ── Toggle Cart Drawer ──
+    const cartToggle  = document.getElementById('cartToggle');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartDrawer  = document.getElementById('cartDrawer');
+    const cartClose   = document.getElementById('cartClose');
+
+    function openCart() {
+      cartOverlay.classList.add('active');
+      cartDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+      cartOverlay.classList.remove('active');
+      cartDrawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    cartToggle.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    // ── Add to Cart ──
+    function addToCart(btn, name, price) {
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast('✅ ' + name + ' ditambahkan ke keranjang!');
+
+      // Button feedback
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ Ditambahkan!';
+      btn.style.background = 'var(--amber)';
+      btn.style.color = 'var(--white)';
+      btn.style.borderColor = 'var(--amber)';
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1500);
+    }
+
+    // ── Update Cart UI ──
+    function updateCartUI() {
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+
+      document.getElementById('cartCount').textContent = count;
+      document.getElementById('cartTotal').textContent = 'Rp ' + total.toLocaleString('id-ID');
+
+      const body = document.getElementById('cartBody');
+      const foot = document.getElementById('cartFoot');
+
+      if (cart.length === 0) {
+        body.innerHTML = `
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛍️</div>
+            <p>Keranjang Anda masih kosong.</p>
+            <p>Yuk, mulai belanja sekarang!</p>
+          </div>`;
+        foot.style.display = 'none';
+      } else {
+        foot.style.display = 'block';
+        body.innerHTML = cart.map((item, idx) => `
+          <div class="cart-item">
+            <div class="cart-item-img" style="background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:1.8rem;">🛍️</div>
+            <div class="cart-item-info">
+              <p class="cart-item-name">${item.name}</p>
+              <p class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</p>
+              <div class="cart-qty">
+                <button class="qty-btn" onclick="changeQty(${idx}, -1)" aria-label="Kurangi jumlah">−</button>
+                <span class="qty-num">${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${idx}, 1)" aria-label="Tambah jumlah">+</button>
+              </div>
+            </div>
+            <button class="cart-item-del" onclick="removeItem(${idx})" aria-label="Hapus produk">🗑️</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function changeQty(idx, delta) {
+      cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+      updateCartUI();
+    }
+
+    function removeItem(idx) {
+      const name = cart[idx].name;
+      cart.splice(idx, 1);
+      updateCartUI();
+      showToast('🗑️ ' + name + ' dihapus dari keranjang.');
+    }
+
+    // ── Toast ──
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ── Copy Promo Code ──
+    function copyPromo() {
+      navigator.clipboard.writeText('NUSA50').then(() => {
+        showToast('📋 Kode NUSA50 berhasil disalin!');
+      }).catch(() => {
+        showToast('📋 Kode promo: NUSA50');
+      });
+    }
+
+    // ── Checkout ──
+    function checkout() {
+      if (cart.length === 0) return;
+      showToast('🎉 Terima kasih! Pesanan Anda sedang diproses.');
+      cart = [];
+      updateCartUI();
+      closeCart();
+    }
+
+    // ── Smooth Active Nav ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('nav ul li a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const link = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Wishlist Toggle ──
+    document.querySelectorAll('.product-wishlist').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isActive = btn.textContent === '♥';
+        btn.textContent = isActive ? '♡' : '♥';
+        btn.style.color  = isActive ? '' : '#e25c3b';
+        showToast(isActive ? '💔 Dihapus dari wishlist.' : '❤️ Ditambahkan ke wishlist!');
+      });
+    });
+  </script>
+
+</body>
+</html>
